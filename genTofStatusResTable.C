@@ -14,6 +14,7 @@ void drawAndGetTables();
 //-----------------------------------------------------------------------------------------
 void genTofStatusResTable()
 {
+	system("mkdir plots");
 	readFiles();
 	drawAndGetTables();
 }

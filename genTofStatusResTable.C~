@@ -138,6 +138,7 @@ void drawAndGetTables()
 				//cout<<"TrayfromImodule: "<<TrayfromImodule<<endl;
 				//cout<<"ModulefromImodule: "<<ModulefromImodule<<endl;
 				cout<<TrayfromImodule<<"\t"<<ModulefromImodule<<"\t"<<0<<endl;
+				outdata<<TrayfromImodule<<"\t"<<ModulefromImodule<<"\t"<<0<<endl;
 			}
 		}
 	}//imodule
@@ -195,11 +196,11 @@ void drawAndGetTables()
 				if(std::find(iModuleVect.begin(), iModuleVect.end(), iModuleTem ) == iModuleVect.end() )
 				{
 					cout<<TrayfromIcell<<"\t"<<ModulefromIcell<<"\t"<<CellfromIcell<<"\t"<<endl;
+					outdata<<TrayfromIcell<<"\t"<<ModulefromIcell<<"\t"<<CellfromIcell<<"\t"<<endl;
 				}
 			}
 		}
 	}//icell
-
 	
 	outdata.close();
 
