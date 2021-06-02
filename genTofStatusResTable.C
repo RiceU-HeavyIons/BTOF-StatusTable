@@ -10,6 +10,12 @@ void readFiles();
 void drawAndGetTables();
 //-----------------------------------------------------------------------------------------
 
+//const TString inputfile = "./inputfiles/allhists_run18isobar_forT0_pass7.root";
+//const TString outtable  = "outTables/badTrayModuleCell_Run18.dat";
+const TString inputfile = "./inputfiles/allhists_forT0_Run19_auau19.6gev_startless_pass5_4prod20210428_ps2.root";
+const TString outtable  = "outTables/badTrayModuleCell_Run19_19.6gev.dat";
+
+
 //-----------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------
 void genTofStatusResTable()
@@ -22,10 +28,10 @@ void genTofStatusResTable()
 //-----------------------------------------------------------------------------------------
 void readFiles()
 {
-	TFile *infile = new TFile("./inputfiles/allhists_run18isobar_forT0_pass7.root", "read");
+	TFile *infile = new TFile(inputfile, "read");
 	H2D_BTofResVsTray     = (TH2D*) infile->Get("BTofTimeRes_vs_Tray");
-	H2D_BTofResVsModule   = (TH2D*) infile->Get("timeModule");
-	H2D_BTofResVsCell     = (TH2D*) infile->Get("BTofTimeRes_vs_Cell");
+	H2D_BTofResVsModule   = (TH2D*) infile->Get("h_BTofTimeRes_vs_Module");
+	H2D_BTofResVsCell     = (TH2D*) infile->Get("h_BTofTimeRes_vs_Cell");
 	prfx_BTofResVsTray    = (TProfile*) H2D_BTofResVsTray  ->ProfileX("prfx_BTofResVsTray"  );
 	prfx_BTofResVsModule  = (TProfile*) H2D_BTofResVsModule->ProfileX("prfx_BTofResVsModule");
 	prfx_BTofResVsCell    = (TProfile*) H2D_BTofResVsCell  ->ProfileX("prfx_BTofResVsCell"  );
@@ -75,7 +81,8 @@ void drawAndGetTables()
 	//------------------------
 
 	std::ofstream outdata;
-	outdata.open("./badTrayModuleCell_Run18.dat", std::ofstream::out);
+	outdata.open(outtable.Data(), std::ofstream::out);
+	//outdata.open("./badTrayModuleCell_Run18.dat", std::ofstream::out);
 
 	for(int itray=1; itray<=120; itray++)
 	{
